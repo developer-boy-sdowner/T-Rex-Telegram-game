@@ -7,12 +7,12 @@ const server = express();
 const bot = new TelegramBot(TOKEN, { polling: true } );
 
 const port = process.env.PORT || 5000;
-const gameName = "train";
+const game_short_name = "train";
 
 const queries = {};
 
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "This bot implements a T-Rex jumping game. Say /game if you want to play."));
-bot.onText(/start|game/, (msg) => bot.sendGame(msg.from.id, gameName));
+bot.onText(/start|game/, (msg) => bot.sendGame(msg.from.id, game_short_name));
 bot.on("callback_query", function (query) {
     if (query.game_short_name !== gameName) {
         bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
