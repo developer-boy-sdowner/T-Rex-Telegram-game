@@ -7,7 +7,7 @@ const server = express();
 const bot = new TelegramBot(TOKEN, { polling: true } );
 
 const port = process.env.PORT || 5000;
-const gameName = "trexjump";
+const gameName = "train";
 
 const queries = {};
 
@@ -18,7 +18,7 @@ bot.on("callback_query", function (query) {
         bot.answerCallbackQuery(query.id, "Sorry, '" + query.game_short_name + "' is not available.");
     } else {
         queries[query.id] = query;
-        let gameurl = "https://trexgame.herokuapp.com/index.html?id="+query.id;
+        let gameurl = "https://play.famobi.com/train-2048?id="+query.id;
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl
